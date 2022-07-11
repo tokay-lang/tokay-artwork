@@ -6,6 +6,17 @@ The artwork was initially created and designed by [Timmytiefkuehl](https://githu
 
 ---
 
+## banner-with-darkmode-styling
+
+### banner-with-darkmode-styling.svg
+![banner-with-darkmode-styling.svg](banner-with-darkmode-styling.svg)
+
+### rendered/banner-with-darkmode-styling.png
+![rendered/banner-with-darkmode-styling.png](rendered/banner-with-darkmode-styling.png)
+
+### rendered/banner-with-darkmode-styling.webp
+![rendered/banner-with-darkmode-styling.webp](rendered/banner-with-darkmode-styling.webp)
+
 ## banner-with-subline
 
 ### banner-with-subline.svg
