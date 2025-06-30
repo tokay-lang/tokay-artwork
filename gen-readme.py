@@ -6,7 +6,7 @@ Generates README.md with rendered versions of the provided images
 import os, glob, cairosvg, PIL
 
 output_folder = "rendered"
-output_width = 2000
+output_widths = [400, 800, 1200, 1600]
 
 os.makedirs(output_folder, exist_ok=True)
 
@@ -16,22 +16,26 @@ This repostitory contains artwork relating the [Tokay programming language](http
 
 The artwork was initially created and designed by [Timmytiefkuehl](https://github.com/timmytiefkuehl).
 
+The font used by the Logo is [Changa](https://fonts.google.com/specimen/Changa).
+
 ---
 """)
 
 for svg in sorted(glob.glob("*.svg")):
 	base = svg.removesuffix(".svg")
 
-	# generate png from svg
-	png = os.path.join(output_folder, base + ".png")
-	cairosvg.svg2png(url=svg, write_to=png, output_width=output_width)
-	svg.removesuffix(".svg") + ".png"
-
-	# generate webp from png
-	webp = os.path.join(output_folder, base + ".webp")
-	image = PIL.Image.open(png)
-	image.save(webp, format="webp")
-
 	print(f"## {base}\n")
-	print("\n".join([f"### {x}\n![{x}]({x})\n" for x in [svg, png, webp]]))
+	print("\n".join([f"### {name}\n![{name}]({name})\n" for name in [svg]]))
 
+	for width in output_widths:
+		# generate png from svg
+		png = os.path.join(output_folder, f"{base}-{width}.png")
+		cairosvg.svg2png(url=svg, write_to=png, output_width=width)
+		svg.removesuffix(".svg") + ".png"
+
+		# generate webp from png
+		webp = os.path.join(output_folder, f"{base}-{width}.webp")
+		image = PIL.Image.open(png)
+		image.save(webp, format="webp")
+
+		print("\n".join([f"#### {name}\n![{name}]({name})\n" for name in [png, webp]]))
